@@ -54,7 +54,7 @@ jobs:
         swap-storage: true
 
     - name: Checkout
-      uses: actions/checkout@v3.1.0
+      uses: actions/checkout@v4
 
     - name: Initialization environment
       env:
@@ -62,6 +62,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.eu.org/init_build_environment.sh)'
+        sudo apt install -y golang-1.22-go
         sudo timedatectl set-timezone "$TZ"
         git config --global user.email ${{ github.actor }}@users.noreply.github.com
         git config --global user.name ${{ github.actor }}
