@@ -69,9 +69,12 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: Golang 1.22
+    - name: Install Go 1.22
       run: |
-        sudo snap install go --classic
+        sudo rm -rf /usr/local/go
+        wget -O go.tgz https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go.tgz
+        which go
         go version
 
     - name: Clone source code
